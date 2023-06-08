@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Hajj & Umrah Guide App</title>
+    <style>
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+form {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+input[type="radio"] {
+    margin-right: 10px;
+}
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+.iframe-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .iframe-container iframe {
+        max-width: 100%;
+    }
+@media screen and (max-width: 800px){
+    form {
+        width: 100%;
+    }
+
+    h1, h2{
+        text-align: center;
+    }
+
+    #live_haram{
+        width:100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Hajj & Umrah Guide App</h1>
+        <h2>Are you intending for hajj or umrah?</h2>
+        <form method="post" action="{{ url_for('submit') }}">
+            <label>
+                <input type="radio" name="choice" value="hajj" required>
+                Hajj
+            </label>
+            <label>
+                <input type="radio" name="choice" value="umrah" required>
+                Umrah
+            </label>
+            <input type="submit" value="Submit">
+        </form>
+<div class="iframe-container">
+    <iframe id="live_haram" width="50%" height="400" src="https://www.youtube.com/embed/3loPeQnJKk4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+    </div>
+
+    <div id="chatbot-icon" onclick="toggleChatbox()">&#128172;</div>
+    <div id="chatbot-container">
+        <div id="chatbot-header">Chatbot</div>
+        <div id="chatbot-messages"></div>
+        <input type="text" id="chatbot-input" placeholder="Type your message...">
+        <button id="send-btn">Send</button>
+    </div>
+</body>
+
+<script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+
+
+</html>
